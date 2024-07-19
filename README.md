@@ -8,7 +8,7 @@ TrackUrSpends AI is a comprehensive Flutter application designed to assist users
 
 ## Download
 
-Android users can download the app from the repository by clicking the APK in the [Download](Download/TrackUrSpends AI.apk) folder. To download the APK, click on the "View raw" button or the three dots and select "Download".
+Android users can download the app from the repository by clicking the APK in the [Download](https://github.com/AyaanHimani/TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot/blob/main/Download/TrackUrSpends%20AI.apk) folder. To download the APK, click on the "View raw" button or the three dots and select "Download".
 
 ## Features
 
@@ -20,7 +20,7 @@ Android users can download the app from the repository by clicking the APK in th
 
 ## Video
 
-Watch the demo video to see TrackUrSpends AI in action. The video is available in the [Video](Video/TrackUrSpends AI_Demo.mp4) directory.
+Watch the demo video to see TrackUrSpends AI in action. The video is available in the [Video](https://github.com/AyaanHimani/TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot/blob/main/Video/TrackUrSpends%20AI_Demo.mp4) directory.
 
 ## Getting Started
 
