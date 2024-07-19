@@ -1,20 +1,26 @@
 # TrackUrSpends AI
 
-Track and Manage Expenses 
+Track and Manage Expenses
 
 ## Overview
 
-TrackUrSpends is a Flutter application designed to help users track and manage their expenses. It features user authentication, data storage in Firestore, and a conversational AI assistant using Dialogflow.
+TrackUrSpends AI is a comprehensive Flutter application designed to assist users in tracking and managing their expenses efficiently. The app leverages Firebase for authentication and data storage, and integrates Dialogflow for a conversational AI assistant.
 
-**Note:** This app is optimized for Android users. Android users can download the app from the repository by clicking the APK in the [Download](Download) folder.
+## Download
+
+Android users can download the app from the repository by clicking the APK in the [Download](Download/TrackUrSpends AI.apk) folder. To download the APK, click on the "View raw" button or the three dots and select "Download".
 
 ## Features
 
-- **Expense Tracking:** Add, edit, and delete expense entries.
-- **Data Visualization:** View expenses through various charts and graphs.
-- **User Authentication:** Secure sign-up and login using Firebase Auth.
+- **Expense Tracking:** Easily add, edit, and delete expense entries.
+- **Data Visualization:** Gain insights through various charts and graphs.
+- **User Authentication:** Secure sign-up and login with Firebase Auth.
 - **Reminders:** Set and manage reminders for expenses.
-- **AI Assistant:** Get insights and tips through the TUrS AI chatbot powered by Dialogflow.
+- **AI Assistant:** Get personalized insights and tips through the TUrS AI chatbot powered by Dialogflow.
+
+## Video
+
+Watch the demo video to see TrackUrSpends AI in action. The video is available in the [Video](Video/TrackUrSpends AI_Demo.mp4) directory.
 
 ## Getting Started
 
@@ -30,11 +36,11 @@ To get a local copy up and running, follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/yourusername/TrackUrSpends.git
+   git clone https://github.com/AyaanHimani/TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot.git
    ```
 2. Navigate to the project directory
    ```sh
-   cd TrackUrSpends
+   cd TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot
    ```
 3. Install dependencies
    ```sh
@@ -84,16 +90,14 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-LinkedIn: [Ayaan Himani] (https://www.linkedin.com/in/ayaan-himani-1a4923287/)
+- LinkedIn: [Ayaan Himani](https://www.linkedin.com/in/ayaan-himani-1a4923287/)
+- Email: [ayaanhimani@gmail.com](mailto:ayaanhimani@gmail.com)
 
-Ayaan Himani - [ayaanhimani@gmail.com](mailto:ayaanhimani@gmail.com)
-
-Project Link: [https://github.com/yourusername/TrackUrSpends](https://github.com/yourusername/TrackUrSpends)
+Project Link: [https://github.com/AyaanHimani/TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot.git](https://github.com/AyaanHimani/TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot.git)
 
 ## Acknowledgements
 
 - [Flutter](https://flutter.dev/)
 - [Firebase](https://firebase.google.com/)
 - [Dialogflow](https://dialogflow.cloud.google.com/)
-
 

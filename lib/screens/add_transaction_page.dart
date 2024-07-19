@@ -164,7 +164,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: _isSubmitting
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: Color(0xFFEF6C06)))
           : Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(

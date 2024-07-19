@@ -61,7 +61,7 @@ class TermsConditionsPage extends StatelessWidget {
                     'We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days\' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.\n\n'
 
                     '8. Contact Us\n\n'
-                    'If you have any questions about these Terms, please contact us by visiting this page on our website:',
+                    'If you have any questions about these Terms, please contact us by visiting our GitHub page:',
                 style: TextStyle(fontSize: 16.0),
               ),
               const SizedBox(width: 10.0),

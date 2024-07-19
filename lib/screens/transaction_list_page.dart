@@ -386,7 +386,7 @@ class _TransactionListPageState extends State<TransactionListPage> {
                   height: 50.0,
                 ),
                 pw.Text(
-                  'TrackUrSpends Transaction Report',
+                  'TrackUrSpends Transaction Statement',
                   style: pw.TextStyle(
                     fontSize: 24.0,
                     fontWeight: pw.FontWeight.bold,

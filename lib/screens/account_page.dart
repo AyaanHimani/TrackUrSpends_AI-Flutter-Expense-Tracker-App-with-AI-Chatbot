@@ -400,9 +400,9 @@ class _AccountPageState extends State<AccountPage> {
               style: const TextStyle(fontSize: 16, color: Colors.black),
               children: [
                 const TextSpan(
-                  text: "This will take you to the app's GitHub page.\n"
-                      "You are welcome to raise your queries and write your opinions.\n"
-                      "Click on the link below if the page does not redirect.\n",
+                  text: "This will take you to the app's GitHub page.\n\n"
+                      "You are welcome to raise your queries and write your opinions.\n\n"
+                      "Click on the link below if the page does not redirect.\n\n",
                 ),
                 TextSpan(
                   text: "https://github.com/AyaanHimani/TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot.git",

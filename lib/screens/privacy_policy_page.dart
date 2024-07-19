@@ -97,7 +97,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                     'You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.\n\n'
                     'Contact Us\n\n'
                     'If you have any questions about this Privacy Policy, You can contact us:\n\n'
-                    'By visiting this page on our website:',
+                    'By visiting our GitHub page:',
                 style: TextStyle(fontSize: 16.0),
               ),
               const SizedBox(width: 10.0),
