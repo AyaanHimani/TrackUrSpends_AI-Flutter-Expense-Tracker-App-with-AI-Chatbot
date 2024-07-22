@@ -56,7 +56,7 @@ class _AccountPageState extends State<AccountPage> {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => const AuthPage()),
-          (route) => false,
+      (route) => false,
     );
   }
 
@@ -146,46 +146,51 @@ class _AccountPageState extends State<AccountPage> {
               title: const Text("Confirmation",
                   style: TextStyle(
                       color: Colors.red, fontWeight: FontWeight.bold)),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    "Are you sure you want to delete your Account?",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    "Account along with all your data (transactions, reminders, photos, etc.) will be deleted and cannot be recovered once you confirm this.",
-                    style: TextStyle(fontSize: 14, color: Colors.red),
-                  ),
-                  const SizedBox(height: 20),
-                  TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      labelText: "Type your registered email",
-                      border: const OutlineInputBorder(),
-                      errorText: emailErrorMessage,
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "Are you sure you want to delete your Account?",
+                      style: TextStyle(fontSize: 16),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  TextField(
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                      labelText: "Type your password",
-                      border: const OutlineInputBorder(),
-                      errorText: passwordErrorMessage,
-                    ),
-                    obscureText: true,
-                  ),
-                  if (emailErrorMessage != null || passwordErrorMessage != null) ...[
                     const SizedBox(height: 10),
+                    const Text(
+                      "Account along with all your data (transactions, reminders, photos, etc.) will be deleted and cannot be recovered once you confirm this.\n"
+                      "If you have signed in with this account in multiple devices, make sure to sign out from all other devices for proper deletion of the account.",
+                      style: TextStyle(fontSize: 14, color: Colors.red),
+                    ),
+                    const SizedBox(height: 20),
+                    TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        labelText: "Type your registered email",
+                        border: const OutlineInputBorder(),
+                        errorText: emailErrorMessage,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    TextField(
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        labelText: "Type your password",
+                        border: const OutlineInputBorder(),
+                        errorText: passwordErrorMessage,
+                      ),
+                      obscureText: true,
+                    ),
+                    if (emailErrorMessage != null ||
+                        passwordErrorMessage != null) ...[
+                      const SizedBox(height: 10),
+                    ],
                   ],
-                ],
+                ),
               ),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text("Cancel", style: TextStyle(color: Colors.red)),
+                  child:
+                      const Text("Cancel", style: TextStyle(color: Colors.red)),
                 ),
                 TextButton(
                   onPressed: () async {
@@ -200,7 +205,8 @@ class _AccountPageState extends State<AccountPage> {
                       });
                     } else if (emailController.text != widget.userModel.email) {
                       setState(() {
-                        emailErrorMessage = "Incorrect email. Please try again.";
+                        emailErrorMessage =
+                            "Incorrect email. Please try again.";
                       });
                     } else if (passwordController.text.isEmpty) {
                       setState(() {
@@ -217,7 +223,8 @@ class _AccountPageState extends State<AccountPage> {
                         _deleteAllData(context, "Account");
                       } else {
                         setState(() {
-                          passwordErrorMessage = "Incorrect password. Please try again.";
+                          passwordErrorMessage =
+                              "Incorrect password. Please try again.";
                         });
                       }
                     }
@@ -236,15 +243,14 @@ class _AccountPageState extends State<AccountPage> {
   Future<bool> _reauthenticateUser(String email, String password) async {
     try {
       User user = FirebaseAuth.instance.currentUser!;
-      AuthCredential credentials = EmailAuthProvider.credential(email: email, password: password);
+      AuthCredential credentials =
+          EmailAuthProvider.credential(email: email, password: password);
       await user.reauthenticateWithCredential(credentials);
       return true;
     } catch (e) {
-      print(e.toString());
       return false;
     }
   }
-
 
   Future<void> _deleteAllData(BuildContext context, String toDelete) async {
     showDialog(
@@ -266,7 +272,8 @@ class _AccountPageState extends State<AccountPage> {
       }
 
       final uid = user.uid;
-      final userDocRef = FirebaseFirestore.instance.collection('users').doc(uid);
+      final userDocRef =
+          FirebaseFirestore.instance.collection('users').doc(uid);
 
       // Using WriteBatch to perform batched writes
       WriteBatch batch = FirebaseFirestore.instance.batch();
@@ -300,7 +307,7 @@ class _AccountPageState extends State<AccountPage> {
           .get();
       if (photos.docs.isNotEmpty) {
         for (var doc in photos.docs) {
-          final photoUrl = doc['photoUrl'] as String?;
+          final photoUrl = doc['imageUrl'] as String?;
           if (photoUrl != null) {
             await FirebaseStorage.instance.refFromURL(photoUrl).delete();
           }
@@ -329,7 +336,8 @@ class _AccountPageState extends State<AccountPage> {
 
       // Update user document
       batch.update(userDocRef, {
-        'accounts': userModel.accounts.map((account) => account.toMap()).toList(),
+        'accounts':
+            userModel.accounts.map((account) => account.toMap()).toList(),
         'haveReminders': userModel.haveReminders,
       });
 
@@ -342,7 +350,6 @@ class _AccountPageState extends State<AccountPage> {
         Navigator.of(context).pop(); // Close the progress indicator
 
         _signOut(context);
-
       } else {
         // Only data deletion
         Navigator.of(context).pop(); // Close the progress indicator
@@ -350,7 +357,8 @@ class _AccountPageState extends State<AccountPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text("Data Deleted", style: TextStyle(color: Colors.red)),
+              title: const Text("Data Deleted",
+                  style: TextStyle(color: Colors.red)),
               content: const Text(
                 "Please restart the app to view changes.",
               ),
@@ -379,7 +387,8 @@ class _AccountPageState extends State<AccountPage> {
     }
   }
 
-  final Uri _url = Uri.parse('https://github.com/AyaanHimani/TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot.git');
+  final Uri _url = Uri.parse(
+      'https://github.com/AyaanHimani/TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot.git');
 
   Future<void> _launchUrl() async {
     if (!await launchUrl(_url)) {
@@ -405,10 +414,10 @@ class _AccountPageState extends State<AccountPage> {
                       "Click on the link below if the page does not redirect.\n\n",
                 ),
                 TextSpan(
-                  text: "https://github.com/AyaanHimani/TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot.git",
+                  text:
+                      "https://github.com/AyaanHimani/TrackUrSpends_AI-Flutter-Expense-Tracker-App-with-AI-Chatbot.git",
                   style: const TextStyle(color: Colors.blue),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = _launchUrl,
+                  recognizer: TapGestureRecognizer()..onTap = _launchUrl,
                 ),
               ],
             ),
@@ -581,7 +590,8 @@ class _AccountPageState extends State<AccountPage> {
                         child: TextButton(
                           style: TextButton.styleFrom(
                             overlayColor: const Color(0xFFEF6C06),
-                            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 15),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(28.0),
                             ),
@@ -600,7 +610,8 @@ class _AccountPageState extends State<AccountPage> {
                         child: TextButton(
                           style: TextButton.styleFrom(
                             overlayColor: const Color(0xFFEF6C06),
-                            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 15),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(28.0),
                             ),
