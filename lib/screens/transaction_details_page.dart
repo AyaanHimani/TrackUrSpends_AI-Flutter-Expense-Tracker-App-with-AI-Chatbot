@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models.dart';
@@ -47,9 +48,49 @@ class TransactionDetailsPage extends StatelessWidget {
     );
 
     if (confirmed) {
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance.collection('users').doc(transaction.userId).get();
+      UserModel userModel = UserModel.fromDocument(userSnapshot);
+
+      double adjustedAmount = transaction.type == 'Income' ? -transaction.amount : transaction.amount;
+
+      // Update the account balance
+      await _updateAccountBalance(userModel, transaction.account, adjustedAmount);
+
+      // Check if the transaction has associated photos
+      if (transaction.havePhotos) {
+
+        QuerySnapshot photoQuery = await FirebaseFirestore.instance
+            .collection('photos')
+            .where('userId', isEqualTo: transaction.userId)
+            .where('transactionId', isEqualTo: transaction.id)
+            .get();
+
+        for (QueryDocumentSnapshot doc in photoQuery.docs) {
+          String photoUrl = doc['imageUrl'];
+
+          Reference photoRef = FirebaseStorage.instance.refFromURL(photoUrl);
+          await photoRef.delete();
+
+          // Delete the photo entry from Firestore
+          await FirebaseFirestore.instance.collection('photos').doc(doc.id).delete();
+        }
+      }
+
+      // Delete the transaction from Firestore
       await FirebaseFirestore.instance.collection('transactions').doc(transaction.id).delete();
+
       Navigator.of(context).pop(true);
     }
+  }
+
+  Future<void> _updateAccountBalance(UserModel userModel, String accountName, double amount) async {
+    final account = userModel.accounts.firstWhere((acc) => acc.name == accountName);
+
+    account.balance += amount;
+
+    await FirebaseFirestore.instance.collection('users').doc(userModel.id).update({
+      'accounts': userModel.accounts.map((account) => account.toMap()).toList(),
+    });
   }
 
   Future<void> _editTransaction(BuildContext context) async {
